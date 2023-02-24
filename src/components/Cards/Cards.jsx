@@ -6,11 +6,12 @@ export default function Cards(props) {
   const charactersList = characters.map((character) => (
     <Card
       key={character.id}
+      id={character.id}
       name={character.name}
       species={character.species}
       gender={character.gender}
       image={character.image}
-      onClose={() => window.alert("Emulamos que se cierra la card")}
+      onClose={() => props.onClose(character.id)}
     />
   ));
   return <div className={styles.cardList}>{charactersList}</div>;
