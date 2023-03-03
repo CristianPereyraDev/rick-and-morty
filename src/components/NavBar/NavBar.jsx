@@ -4,16 +4,18 @@ import styles from "./NavBar.module.css";
 
 function NavBar(props) {
   return (
-    <div>
-      <NavLink to="/home">
-        <button>Home</button>
-      </NavLink>
-      <NavLink to="/about">
-        <button>About</button>
-      </NavLink>
-      <NavLink to="/favorites">
-        <button>Favoritos</button>
-      </NavLink>
+    <div className={styles.navbarContainer}>
+      <div className={styles.linksContainer}>
+        <NavLink to="/home">
+          <button>Home</button>
+        </NavLink>
+        <NavLink to="/about">
+          <button>About</button>
+        </NavLink>
+        <NavLink to="/favorites">
+          <button>Favoritos</button>
+        </NavLink>
+      </div>
       <SearchBar onSearch={props.onSearch} />
     </div>
   );
