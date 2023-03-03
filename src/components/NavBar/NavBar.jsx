@@ -11,6 +11,9 @@ function NavBar(props) {
       <NavLink to="/about">
         <button>About</button>
       </NavLink>
+      <NavLink to="/favorites">
+        <button>Favoritos</button>
+      </NavLink>
       <SearchBar onSearch={props.onSearch} />
     </div>
   );
