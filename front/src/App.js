@@ -8,7 +8,7 @@ import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
 
-const URLCHARACTER = "http://localhost:3001/rickandmorty/character";
+const URL = "http://localhost:3001/rickandmorty/";
 
 function App() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function App() {
   }, [access, navigate]);
 
   const onSearch = (character) => {
-    fetch(`${URLCHARACTER}/${character}`)
+    fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.name) {
