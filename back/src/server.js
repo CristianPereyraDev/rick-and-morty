@@ -2,15 +2,19 @@
 //const fs = require("fs");
 const express = require("express");
 const router = require("./routes/");
+const cors = require("cors");
 
 const server = express();
 const PORT = 3001;
+
+// CORS middleware
+server.use(cors());
 
 // This middleware parses incoming requests with JSON payloads and is based on body-parser.
 server.use(express.json());
 
 // Router middleware
-server.use("/", router);
+server.use("/rickandmorty", router);
 
 server.listen(PORT, () => {
   console.log("Server raised in port " + PORT);

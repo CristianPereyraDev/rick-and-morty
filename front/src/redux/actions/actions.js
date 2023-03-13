@@ -20,7 +20,10 @@ export function addFavorite(character) {
 export function deleteFavorite(idCharacter) {
   return function (dispatch) {
     axios
-      .delete("http://localhost:3001/rickandmorty/fav", idCharacter)
+      .delete(
+        "http://localhost:3001/rickandmorty/fav/" + idCharacter,
+        idCharacter
+      )
       .then((value) => value.data)
       .then((value) => {
         console.log(value);

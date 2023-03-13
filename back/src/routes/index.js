@@ -3,6 +3,7 @@ const getCharById = require("../controllers/getCharById");
 const getCharDetail = require("../controllers/getCharDetail");
 const { postFav, getFav, deleteFav } = require("../controllers/favorites");
 
+// Router middleware
 const router = Router();
 
 router.get("/onsearch/:id", getCharById);
