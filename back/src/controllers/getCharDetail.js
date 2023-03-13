@@ -1,8 +1,11 @@
 const axios = require("axios");
 
-const getCharDetail = (res, id) => {
+const URL = "https://rickandmortyapi.com/api/character/";
+
+const getCharDetail = (req, res) => {
+  const params = req.params;
   axios
-    .get(`https://rickandmortyapi.com/api/character/${id}`)
+    .get(`${URL}${params.id}`)
     .then((response) => response.data)
     .then((data) => {
       const character = {
@@ -14,14 +17,12 @@ const getCharDetail = (res, id) => {
         status: data.status,
         origin: data.origin?.name,
       };
-      res
-        .writeHead(200, { "Content-Type": "application/json" })
-        .end(JSON.stringify(character));
+      res.status(200).json(character);
     })
     .catch((error) => {
       res
-        .writeHead(500, { "Content-Type": "text/plain" })
-        .end(`Personaje con id ${id} no encontrado`);
+        .status(500)
+        .json({ message: `Personaje con id ${params.id} no encontrado` });
     });
 };
 

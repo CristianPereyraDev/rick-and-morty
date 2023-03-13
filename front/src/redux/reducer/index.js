@@ -5,6 +5,7 @@ const initialState = {
   allCharacters: [],
 };
 
+// Reducers can't contains side effects (api calls, read files, etc).
 function rootReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ADD_FAVORITE: {
