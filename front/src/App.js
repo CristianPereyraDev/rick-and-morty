@@ -7,6 +7,7 @@ import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
+import axios from "axios";
 
 const URL = "http://localhost:3001/rickandmorty/";
 
@@ -31,16 +32,17 @@ function App() {
     !access && navigate("/");
   }, [access, navigate]);
 
-  const onSearch = (character) => {
-    fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.name) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("No hay personajes con ese ID");
-        }
-      });
+  const onSearch = async (character) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/rickandmorty/onsearch/${character}`
+      );
+      if (response.data) {
+        setCharacters((oldChars) => [...oldChars, response.data]);
+      } else {
+        window.alert("No hay personajes con ese ID");
+      }
+    } catch (error) {}
   };
 
   const onClose = (id) => {

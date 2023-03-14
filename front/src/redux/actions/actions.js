@@ -3,35 +3,30 @@ import axios from "axios";
 
 // Action with asynchronous code.
 export function addFavorite(character) {
-  return function (dispatch) {
-    axios
-      .post("http://localhost:3001/rickandmorty/fav", character)
-      .then((value) => value.data)
-      .then((value) => {
-        console.log(value);
-        dispatch({ type: ADD_FAVORITE, payload: character });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/rickandmorty/fav",
+        character
+      );
+      dispatch({ type: ADD_FAVORITE, payload: character });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 // Action with asynchronous code.
 export function deleteFavorite(idCharacter) {
-  return function (dispatch) {
-    axios
-      .delete(
+  return async function (dispatch) {
+    try {
+      const response = await axios.delete(
         "http://localhost:3001/rickandmorty/fav/" + idCharacter,
         idCharacter
-      )
-      .then((value) => value.data)
-      .then((value) => {
-        console.log(value);
-        dispatch({ type: DELETE_FAVORITE, payload: idCharacter });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      );
+      dispatch({ type: DELETE_FAVORITE, payload: idCharacter });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
