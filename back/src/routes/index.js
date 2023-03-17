@@ -1,16 +1,20 @@
 const { Router } = require("express");
-const getCharById = require("../controllers/getCharById");
-const getCharDetail = require("../controllers/getCharDetail");
-const { postFav, getFav, deleteFav } = require("../controllers/favorites");
+const {
+  getCharById,
+  getCharDetail,
+  postFavorite,
+  getFavorites,
+  deleteFavorite,
+} = require("../controllers");
 
 // Router middleware
 const router = Router();
 
 router.get("/onsearch/:id", getCharById);
 router.get("/detail/:id", getCharDetail);
-// Fav routes (manipulan el arreglo fav, que simula una base de datos)
-router.post("/fav", postFav);
-router.get("/fav", getFav);
-router.delete("/fav/:id", deleteFav);
+// Favorites routes (manipulan el arreglo fav, que simula una base de datos)
+router.post("/fav", postFavorite);
+router.get("/fav", getFavorites);
+router.delete("/fav/:id", deleteFavorite);
 
 module.exports = router;
