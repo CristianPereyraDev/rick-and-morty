@@ -6,20 +6,23 @@ function Detail(props) {
   const { detailId } = useParams();
   const [character, setCharacter] = useState({});
 
-  useEffect(async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/rickandmorty/detail/${detailId}`
-      );
-      if (response.data.name) {
-        setCharacter(response.data);
-      } else {
-        window.alert("No hay personajes con ese ID");
+  useEffect(() => {
+    async function getCharacterDetail() {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/rickandmorty/detail/${detailId}`
+        );
+        if (response.data.name) {
+          setCharacter(response.data);
+        } else {
+          window.alert("No hay personajes con ese ID");
+        }
+      } catch (error) {
+        window.alert(error);
+        setCharacter({});
       }
-    } catch (error) {
-      window.alert("No hay personajes con ese ID");
-      return setCharacter({});
     }
+    getCharacterDetail();
   }, [detailId]);
 
   return (
@@ -28,7 +31,7 @@ function Detail(props) {
         <button>Go Back</button>
       </Link>
       <h3>{character.name}</h3>
-      <img src={character.image} />
+      <img src={character.image} alt={character.name} />
     </div>
   );
 }

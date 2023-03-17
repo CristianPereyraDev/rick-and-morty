@@ -9,8 +9,6 @@ import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
 import axios from "axios";
 
-const URL = "http://localhost:3001/rickandmorty/";
-
 function App() {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
@@ -20,10 +18,12 @@ function App() {
   let location = useLocation();
 
   function login(userData) {
-    if (userData.password === password && userData.username === username) {
-      setAccess(true);
-      navigate("/home");
-    }
+    // if (userData.password === password && userData.username === username) {
+    //   setAccess(true);
+    //   navigate("/home");
+    // }
+    setAccess(true);
+    navigate("/home");
   }
 
   useEffect(() => {
