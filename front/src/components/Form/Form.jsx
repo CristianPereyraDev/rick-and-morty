@@ -23,26 +23,37 @@ function Form(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Username</label>
-      <input
-        type="text"
-        name="username"
-        value={userData.username}
-        onChange={handleInputChange}
-      />
-      <p className={styles.error}>{errors.username && errors.username}</p>
-
-      <label>Password</label>
-      <input
-        type="password"
-        name="password"
-        value={userData.password}
-        onChange={handleInputChange}
-      />
-      <p className={styles.error}>{errors.password && errors.password}</p>
-
-      <button type="submit">Login</button>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.title}>Login</div>
+      <div className={`${styles.inputContainer} ${styles.ic1}`}>
+        <input
+          type="text"
+          name="username"
+          value={userData.username}
+          onChange={handleInputChange}
+          placeholder=" "
+          className={styles.input}
+        />
+        <div className={`${styles.cut}`}></div>
+        <label className={styles.placeholder}>Username (email)</label>
+        <p className={styles.error}>{errors.username && errors.username}</p>
+      </div>
+      <div className={`${styles.inputContainer} ${styles.ic1}`}>
+        <input
+          type="password"
+          name="password"
+          value={userData.password}
+          onChange={handleInputChange}
+          placeholder=" "
+          className={styles.input}
+        />
+        <div className={`${styles.cut}`}></div>
+        <label className={styles.placeholder}>Password</label>
+        <p className={styles.error}>{errors.password && errors.password}</p>
+      </div>
+      <button type="submit" className={`btn ${styles.submit}`}>
+        Login
+      </button>
     </form>
   );
 }

@@ -50,11 +50,10 @@ function App() {
   };
 
   return (
-    <div className="App" style={{ padding: "25px" }}>
+    <div className="App">
       <div>
         {location.pathname !== "/" ? <NavBar onSearch={onSearch} /> : null}
       </div>
-      <hr />
       <div>
         <Routes>
           <Route exact path="/" element={<Form login={login} />} />
@@ -67,7 +66,6 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
-      <hr />
     </div>
   );
 }
