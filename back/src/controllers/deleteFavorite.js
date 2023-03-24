@@ -1,15 +1,13 @@
-let { favs } = require("../utils/favs");
+const { Favorite } = require("../DB_connection");
 
-function deleteFavorite(req, res) {
-  const id = req.params.id;
-  const filter = favs.filter((fav) => fav.id !== Number(id));
-  if (filter.length < favs.length) {
-    favs = filter;
-    return res
-      .status(200)
-      .json({ message: "Favorite succeful removed.", favs: favs });
+async function deleteFavorite(req, res) {
+  try {
+    const id = req.params.id;
+    await Favorite.destroy({ where: { id } });
+    res.status(200).json({ message: "Favorite succeful removed." });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
-  res.status(400).json({ error: "Favorite id not found" });
 }
 
 module.exports = deleteFavorite;

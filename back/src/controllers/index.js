@@ -3,6 +3,7 @@ const getCharDetail = require("./getCharDetail");
 const postFavorite = require("./postFavorite");
 const getFavorites = require("./getFavorites");
 const deleteFavorite = require("./deleteFavorite");
+const getAllChars = require("./getAllChars");
 
 module.exports = {
   getCharById,
@@ -10,4 +11,5 @@ module.exports = {
   postFavorite,
   getFavorites,
   deleteFavorite,
+  getAllChars,
 };

@@ -1,18 +1,27 @@
-let { favs } = require("../utils/favs");
+const { Favorite } = require("../DB_connection");
+const Character = require("../models/Character");
 
-function postFavorite(req, res) {
+async function postFavorite(req, res) {
   const character = req.body;
-  // Suponiendo que la info es válida
-  if (!favs.find((fav) => fav.id === Number(character.id))) {
-    favs.push(character);
+  try {
+    console.log("fav:", character);
+    const [favorite, created] = await Favorite.findOrCreate({
+      where: { id: character.id },
+      defaults: {
+        id: Number(character.id),
+        name: character.name,
+        status: character.status,
+        species: character.species,
+        gender: character.gender,
+        origin: character.origin,
+        image: character.image,
+      },
+    });
     res.status(200).json({
       message: "Personaje agregado a favoritos correctamente.",
-      favs: favs,
     });
-  } else {
-    res
-      .status(500)
-      .json({ error: "El personaje ya se encuentra en favoritos." });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 }
 

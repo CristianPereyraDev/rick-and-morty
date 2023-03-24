@@ -5,6 +5,7 @@ const {
   postFavorite,
   getFavorites,
   deleteFavorite,
+  getAllChars,
 } = require("../controllers");
 
 // Router middleware
@@ -16,5 +17,7 @@ router.get("/detail/:id", getCharDetail);
 router.post("/fav", postFavorite);
 router.get("/fav", getFavorites);
 router.delete("/fav/:id", deleteFavorite);
+//
+router.get("/allCharacters", getAllChars);
 
 module.exports = router;
